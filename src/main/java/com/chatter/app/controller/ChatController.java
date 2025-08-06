@@ -9,13 +9,21 @@ import com.chatter.app.model.ChatMessage;
 
 @Controller
 public class ChatController {
+
   @MessageMapping("/sendMessage")
   @SendTo("/topic/messages")
   public ChatMessage sendMessage(ChatMessage message) {
-	  return message;
+    return message;
   }
+
   @GetMapping("chat")
-	public String chat() {
-		return "chat"; 
-}
+  public String chat() {
+    return "chat"; 
+  }
+
+  // ✅ NEW: Redirect from root "/" to "/chat"
+  @GetMapping("/")
+  public String home() {
+    return "redirect:/chat";
+  }
 }
